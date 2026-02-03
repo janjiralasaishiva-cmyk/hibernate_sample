@@ -22,7 +22,7 @@
                     update -> just update the table as per query
                     validate -> production safe
                 -->
-                <property name="hibernate.hbm2ddl.auto">update</property>
+                <property name="hibernate.hbm2ddl.auto">create</property>
                 <!-- Helps you see what Hibernate is doing-->
                 <property name="hibernate.show_sql">true</property>
                 <!-- show the format-->
