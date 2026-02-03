@@ -35,6 +35,11 @@ public class Main {
 
         transaction.commit();
 
+        SchemaModification m1 = session.find(SchemaModification.class, 101);
+
+        System.out.println(m1.getLaptop());
+
+
         session.close();
         sessionFactory.close();
 

@@ -34,4 +34,13 @@ public class Laptop {
     public void setRAM(int RAM) {
         this.RAM = RAM;
     }
+
+    @Override
+    public String toString() {
+        return "Laptop{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", RAM=" + RAM +
+                '}';
+    }
 }
