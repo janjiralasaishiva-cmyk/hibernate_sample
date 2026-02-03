@@ -8,19 +8,34 @@
 
             <session-factory>
 
-                <!-- JDBC -->
+                <!-- JDBC , without these there is no DB Connection-->
                 <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
                 <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hibernateExample</property>
                 <property name="hibernate.connection.username">postgres</property>
                 <property name="hibernate.connection.password">Nani@1234</property>
 
                 <!-- Hibernate -->
-<!--                <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>-->
+                <!-- without this SQL generation may be fail or be wrong -->
+                <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+                <!-- prevents silent bugs
+                    create -> recreates the tables
+                    update -> just update the table as per query
+                    validate -> production safe
+                -->
                 <property name="hibernate.hbm2ddl.auto">update</property>
-<!--                <property name="hibernate.show_sql">true</property>-->
+                <!-- Helps you see what Hibernate is doing-->
+                <property name="hibernate.show_sql">true</property>
+                <!-- show the format-->
+                <property name="hibernate.format_sql">true</property>
+
+                <!-- To support multi threading,
+                    10 is the maximum number of database connections Hibernate can keep open at the same time.-->
+<!--                <property name="hibernate.connection.pool_size">10</property>-->
 
                 <!-- Entity -->
+                <!-- Without this -> Hibernate won't know your entities-->
                 <mapping class="org.example.Student"/>
+
 
             </session-factory>
         </hibernate-configuration>

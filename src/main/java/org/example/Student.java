@@ -4,6 +4,8 @@ package org.example;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+import java.util.Objects;
+
 @Entity
 public class Student {
 
@@ -12,6 +14,8 @@ public class Student {
     private String lName;
     private String sName;
     private int age;
+
+
     public int getRollNo() {
         return rollNo;
     }
@@ -37,9 +41,22 @@ public class Student {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return rollNo == student.rollNo;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(rollNo);
+    }
+
+    @Override
     public String toString() {
         return "Student{" +
                 "rollNo=" + rollNo +
+                ", lName='" + lName + '\'' +
                 ", sName='" + sName + '\'' +
                 ", age=" + age +
                 '}';
