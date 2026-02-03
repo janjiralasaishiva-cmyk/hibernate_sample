@@ -7,7 +7,7 @@ import java.util.Objects;
 
 @Entity
 //@Table(name = "ModifiedTable") // To change the table name
-public class SchemaModification {
+public class Employee {
     @Id
 //    @Column(name = "student_id")
     private int sId;
@@ -17,11 +17,13 @@ public class SchemaModification {
     private String course;
 //    @Transient // to do not add this particular column in the database
     private String tech;
-
+    // One to One Relationship
+    @OneToOne
+    @JoinColumn(name = "laptop_id")
     private Laptop laptop;
 
 
-    public SchemaModification() {
+    public Employee() {
     }
 
     public Laptop getLaptop() {
@@ -30,17 +32,6 @@ public class SchemaModification {
 
     public void setLaptop(Laptop laptop) {
         this.laptop = laptop;
-    }
-
-    @Override
-    public String toString() {
-        return "SchemaModification{" +
-                "sId=" + sId +
-                ", name='" + name + '\'' +
-                ", course='" + course + '\'' +
-                ", tech='" + tech + '\'' +
-                ", laptop=" + laptop +
-                '}';
     }
 
     public String getTech() {
@@ -73,6 +64,17 @@ public class SchemaModification {
 
     public void setCourse(String course) {
         this.course = course;
+    }
+
+    @Override
+    public String toString() {
+        return "SchemaModification{" +
+                "sId=" + sId +
+                ", name='" + name + '\'' +
+                ", course='" + course + '\'' +
+                ", tech='" + tech + '\'' +
+                ", laptop=" + laptop +
+                '}';
     }
 
 }

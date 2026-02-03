@@ -8,22 +8,23 @@ import org.hibernate.cfg.Configuration;
 public class Main {
     static void main() {
 
-        SchemaModification modification = new SchemaModification();
+        Employee student1 = new Employee();
 
         Laptop l1 = new Laptop();
-
+        l1.setLaptop_id(1);
         l1.setBrand("Asus");
         l1.setModel("Rog");
         l1.setRAM(16);
 
-        modification.setsId(101);
-        modification.setName("Shiva");
-        modification.setCourse("IT");
-        modification.setTech("Java");
-        modification.setLaptop(l1);
+        student1.setsId(101);
+        student1.setName("Shiva");
+        student1.setCourse("IT");
+        student1.setTech("Java");
+        student1.setLaptop(l1);
 
         SessionFactory sessionFactory = new Configuration()
-                .addAnnotatedClass(SchemaModification.class)
+                .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(Laptop.class)
                 .configure()
                 .buildSessionFactory();
 
@@ -31,14 +32,15 @@ public class Main {
 
         Transaction transaction = session.beginTransaction();
 
-        session.persist(modification);
+
+        session.persist(l1);
+        session.persist(student1);
+
+        Employee m1 = session.find(Employee.class, 101);
+
+        System.out.println(m1.getLaptop().getBrand());
 
         transaction.commit();
-
-        SchemaModification m1 = session.find(SchemaModification.class, 101);
-
-        System.out.println(m1.getLaptop());
-
 
         session.close();
         sessionFactory.close();
