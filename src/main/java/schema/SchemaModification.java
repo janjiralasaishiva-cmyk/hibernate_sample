@@ -6,20 +6,41 @@ import jakarta.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "ModifiedTable") // To change the table name
+//@Table(name = "ModifiedTable") // To change the table name
 public class SchemaModification {
     @Id
-    @Column(name = "student_id")
+//    @Column(name = "student_id")
     private int sId;
-    @Column(name = "student_name")
+//    @Column(name = "student_name")
     private String name;
-    @Column(name = "course_name")
+//    @Column(name = "course_name")
     private String course;
-    @Transient // to do not add this particular column in the database
+//    @Transient // to do not add this particular column in the database
     private String tech;
+
+    private Laptop laptop;
 
 
     public SchemaModification() {
+    }
+
+    public Laptop getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(Laptop laptop) {
+        this.laptop = laptop;
+    }
+
+    @Override
+    public String toString() {
+        return "SchemaModification{" +
+                "sId=" + sId +
+                ", name='" + name + '\'' +
+                ", course='" + course + '\'' +
+                ", tech='" + tech + '\'' +
+                ", laptop=" + laptop +
+                '}';
     }
 
     public String getTech() {
@@ -52,16 +73,6 @@ public class SchemaModification {
 
     public void setCourse(String course) {
         this.course = course;
-    }
-
-    @Override
-    public String toString() {
-        return "SchemaModification{" +
-                "sId=" + sId +
-                ", name='" + name + '\'' +
-                ", course='" + course + '\'' +
-                ", tech='" + tech + '\'' +
-                '}';
     }
 
 }

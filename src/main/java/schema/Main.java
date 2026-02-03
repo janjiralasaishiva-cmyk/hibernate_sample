@@ -10,10 +10,17 @@ public class Main {
 
         SchemaModification modification = new SchemaModification();
 
+        Laptop l1 = new Laptop();
+
+        l1.setBrand("Asus");
+        l1.setModel("Rog");
+        l1.setRAM(16);
+
         modification.setsId(101);
         modification.setName("Shiva");
         modification.setCourse("IT");
         modification.setTech("Java");
+        modification.setLaptop(l1);
 
         SessionFactory sessionFactory = new Configuration()
                 .addAnnotatedClass(SchemaModification.class)
