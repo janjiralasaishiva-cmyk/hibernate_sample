@@ -15,17 +15,17 @@ public class Laptop {
 
 //    @ManyToOne
     // Employee Reference -> to avoid creating a table with composite key of laptop_id and employee_id
-    @ManyToMany(mappedBy = "laptops")
-    // To have only 1 table we can just use mappedBy= , so that only one table gets created
-    private List<Employee> employee;
-
-    public List<Employee> getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(List<Employee> employee) {
-        this.employee = employee;
-    }
+//    @ManyToMany(mappedBy = "laptops")
+//    // To have only 1 table we can just use mappedBy= , so that only one table gets created
+//    private List<Employee> employee;
+//
+//    public List<Employee> getEmployee() {
+//        return employee;
+//    }
+//
+//    public void setEmployee(List<Employee> employee) {
+//        this.employee = employee;
+//    }
 
     public Laptop() {
     }
