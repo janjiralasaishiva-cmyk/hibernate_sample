@@ -27,19 +27,21 @@ public class Main {
 
         // To work with a specific column
         // If we are having multiple columns then ?1, ?2, ?3, ...
-        String brand = "Asus";
+//        String brand = "Asus";
+//
+//        Query query = session.createQuery("select brand, model from Laptop where brand like ?1");
+//        query.setParameter(1, brand);
+//
+//        List<Object[]> laptops = query.getResultList();
 
-        Query query = session.createQuery("select brand, model from Laptop where brand like ?1");
-        query.setParameter(1, brand);
+//        for(Object[] data : laptops){
+//            System.out.println((String) data[0]+" " + (String) data[1]);
+//        }
 
-        List<Object[]> laptops = query.getResultList();
+        Laptop laptop = session.find(Laptop.class, 111);
 
-//        Laptop laptop = session.find(Laptop.class, 111);
 
-        for(Object[] data : laptops){
-            System.out.println(data[0]+" " + data[1]);
-        }
-//        System.out.println(laptops);
+//        System.out.println(laptop);
 
         transaction.commit();
 
