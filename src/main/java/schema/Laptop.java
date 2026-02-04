@@ -3,6 +3,7 @@ package schema;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Laptop {
@@ -12,6 +13,18 @@ public class Laptop {
     private String brand;
     private String model;
     private int RAM;
+
+    @ManyToOne
+    // Employee Reference -> to avoid creating a table with composite key of laptop_id and employee_id
+    private Employee employee;
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
     public Laptop() {
     }

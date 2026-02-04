@@ -5,10 +5,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.Arrays;
+
 public class Main {
     static void main() {
 
-        Employee student1 = new Employee();
+        Employee employee1 = new Employee();
 
         Laptop l1 = new Laptop();
         l1.setLaptop_id(1);
@@ -16,11 +18,20 @@ public class Main {
         l1.setModel("Rog");
         l1.setRAM(16);
 
-        student1.setsId(101);
-        student1.setName("Shiva");
-        student1.setCourse("IT");
-        student1.setTech("Java");
-        student1.setLaptop(l1);
+        Laptop l2 = new Laptop();
+        l2.setLaptop_id(2);
+        l2.setBrand("DELL");
+        l2.setModel("XPS");
+        l2.setRAM(32);
+
+        l1.setEmployee(employee1);
+        l2.setEmployee(employee1);
+
+        employee1.setsId(101);
+        employee1.setName("Shiva");
+        employee1.setCourse("IT");
+        employee1.setTech("Java");
+        employee1.setLaptops(Arrays.asList(l1, l2));
 
         SessionFactory sessionFactory = new Configuration()
                 .addAnnotatedClass(Employee.class)
@@ -34,11 +45,12 @@ public class Main {
 
 
         session.persist(l1);
-        session.persist(student1);
+        session.persist(l2);
+        session.persist(employee1);
 
         Employee m1 = session.find(Employee.class, 101);
 
-        System.out.println(m1.getLaptop().getBrand());
+        System.out.println(m1);
 
         transaction.commit();
 

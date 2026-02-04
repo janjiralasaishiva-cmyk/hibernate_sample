@@ -1,8 +1,12 @@
 package schema;
 
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
+
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -17,21 +21,25 @@ public class Employee {
     private String course;
 //    @Transient // to do not add this particular column in the database
     private String tech;
-    // One to One Relationship
-    @OneToOne
-    @JoinColumn(name = "laptop_id")
-    private Laptop laptop;
+    // OneToOne Relationship
+//    @OneToOne
+//    @JoinColumn(name = "laptop_id")
+//    private Laptop laptop;
+
+    //OneToMany relationship
+    @OneToMany(mappedBy = "employee")
+    private List<Laptop> laptops;
 
 
     public Employee() {
     }
 
-    public Laptop getLaptop() {
-        return laptop;
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
 
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 
     public String getTech() {
@@ -68,13 +76,12 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "SchemaModification{" +
+        return "Employee{" +
                 "sId=" + sId +
                 ", name='" + name + '\'' +
                 ", course='" + course + '\'' +
                 ", tech='" + tech + '\'' +
-                ", laptop=" + laptop +
+                ", laptops=" + laptops +
                 '}';
     }
-
 }
