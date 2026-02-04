@@ -1,9 +1,8 @@
 package schema;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Laptop {
@@ -14,15 +13,17 @@ public class Laptop {
     private String model;
     private int RAM;
 
-    @ManyToOne
+//    @ManyToOne
     // Employee Reference -> to avoid creating a table with composite key of laptop_id and employee_id
-    private Employee employee;
+    @ManyToMany(mappedBy = "laptops")
+    // To have only 1 table we can just use mappedBy= , so that only one table gets created
+    private List<Employee> employee;
 
-    public Employee getEmployee() {
+    public List<Employee> getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(List<Employee> employee) {
         this.employee = employee;
     }
 

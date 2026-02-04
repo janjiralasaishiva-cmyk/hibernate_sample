@@ -1,9 +1,7 @@
 package schema;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 
 import java.util.List;
@@ -27,8 +25,10 @@ public class Employee {
 //    private Laptop laptop;
 
     //OneToMany relationship
-    @OneToMany(mappedBy = "employee")
+//    @OneToMany(mappedBy = "employee")
+    @ManyToMany
     private List<Laptop> laptops;
+
 
 
     public Employee() {
